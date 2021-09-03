@@ -15,15 +15,28 @@ void main() {
 }
 
 class MagicBall extends StatefulWidget {
-  const MagicBall({Key? key}) : super(key: key);
-
   @override
   _MagicBallState createState() => _MagicBallState();
 }
 
 class _MagicBallState extends State<MagicBall> {
+  int imageNumber = 1;
+
+  void updateBallImage() {
+    setState(() {
+      imageNumber = Random().nextInt(5) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: TextButton(
+        onPressed: () {
+          updateBallImage();
+        },
+        child: Image.asset('images/ball$imageNumber.png'),
+      ),
+    );
   }
 }
